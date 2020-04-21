@@ -1,0 +1,32 @@
+
+<textarea>
+    <h1>Livrs list</h1>
+
+<table border="5">
+    <thead>
+    <tr>
+        <th>Idv</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for livr in guide %}
+        <tr>
+
+            <td>{{ livr.nom }}</td>
+
+            <td>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</textarea>
+<script>
+
+    function getCode()
+    {
+        var html = $("#note-editing-area");
+        console(html);
+    }
+</script>

@@ -1,0 +1,82 @@
+guide_homepage:
+    path:     /
+    defaults: { _controller: GuideBundle:Default:index }
+guide_index:
+    path:     /index
+    defaults: { _controller: GuideBundle:Guide:index }
+guide_home:
+    path:     /home
+    defaults: { _controller: GuideBundle:Guide:home }
+guide_ajoutg:
+    path:     /ajoutg
+    defaults: { _controller: GuideBundle:Guide:ajoutg}
+guide_afficherg:
+    path:     /afficher
+    defaults: { _controller: GuideBundle:Guide:afficherGuide}
+guide_supprimer:
+    path:     /supprimer/{id}
+    defaults: { _controller: GuideBundle:Guide:supprimerGuide}
+guide_update:
+    path:     /update/{id}
+    defaults: { _controller: GuideBundle:Guide:updateGuide}
+specialite_ajouts:
+    path:     /ajouts
+    defaults: { _controller: GuideBundle:Specialite:ajouts}
+specialite_affichers:
+    path:     /affichers
+    defaults: { _controller: GuideBundle:Specialite:affichers}
+specialite_supprimer:
+    path:     /supprimers/{id}
+    defaults: { _controller: GuideBundle:Specialite:supprimers}
+specialite_update:
+    path:     /updates/{id}
+    defaults: { _controller: GuideBundle:Specialite:updates}
+g_temp:
+    path:     /homex
+    defaults: { _controller: GuideBundle:Guide:homex}
+calendrier:
+    path:     /calendrier
+    defaults: { _controller: GuideBundle:Guide:calendr}
+pdf_route:
+    path:     /pdf
+    defaults: { _controller: GuideBundle:Guide:pdf}
+chart_stat:
+    path:     /stat
+    defaults: { _controller: GuideBundle:Guide:stat}
+afficherg_front:
+    path:     /front
+    defaults: { _controller: GuideBundle:Guide:afficherGuideFront}
+
+choisir_guide:
+    path:     /guidechoisie/{id}
+    defaults: { _controller: GuideBundle:ReservationPersonnel:guidechoisie}
+
+reserver_guide:
+    path:     /ajouter
+    defaults: { _controller: GuideBundle:ReservationPersonnel:ajouter}
+
+afficher_reservation:
+    path:     /afficherp
+    defaults: { _controller: GuideBundle:ReservationPersonnel:afficher}
+annuler_reservation:
+    path:     /supprimerAP/{id}
+    defaults: { _controller: GuideBundle:ReservationPersonnel:supprimerRP}
+events_afficher:
+    path:     /afficherA
+    defaults: { _controller: GuideBundle:AffectationGuide:afficherE}
+affectation_ajout:
+    path:     /ajouterxx
+    defaults: { _controller: GuideBundle:AffectationGuide:ajouter}
+afficher_aff:
+    path:     /afficherAff
+    defaults: { _controller: GuideBundle:AffectationGuide:afficherE}
+supprimer_affectation:
+    path:     /supprimerA/{id}
+    defaults: { _controller: GuideBundle:AffectationGuide:supprimerA}
+update_affectation:
+    path:     /updateAF/{id}
+    defaults: { _controller: GuideBundle:AffectationGuide:updateAF}
+
+
+
+
