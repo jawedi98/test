@@ -1,0 +1,125 @@
+{% extends 'base2.html.twig' %}
+
+{% block body %}
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="Dashboard">
+        <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+        <title>Dashio - Bootstrap Admin Template</title>
+
+        <!-- Favicons -->
+        <link href="img/favicon.png" rel="icon">
+        <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+        <!-- Bootstrap core CSS -->
+        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!--external css-->
+        <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom styles for this template -->
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/style-responsive.css" rel="stylesheet">
+
+    </head>
+
+        <section class="wrapper site-min-height">
+            <!-- page start-->
+            <div class="chat-room mt">
+                <aside class="mid-side">
+                    <div class="chat-room-head">
+                        <h3>Forum Room</h3>
+                        <form action="#" class="pull-right position">
+                            <input id="recherche" type="text" placeholder="Search" class="form-control search-btn ">
+                        </form>
+                    </div>
+                    <div class="room-desk" id="result">
+                        <h4 class="pull-left">n'hésiter pas à poser vos questions !</h4>
+                        <img src="{{ asset('souhail.gif') }}" alt="Symfony!" width="48">
+                        <a href="{{ path('question_news') }}" class="pull-right btn btn-theme02">+ Ajouter une question</a>
+                        {%  for q in questions %}
+
+                            <div class="room-box">
+                                <div>
+                                    <a href="#"><img  src="delete.png" class="rounded"  style="width: 30px;height: 30px" align="right"></a>
+                                </div>
+                                <img src="avatar.png" class="rounded"  style="width: 50px;height: 50px"><p></p>
+                                <br><br>
+                                <h5 class="text-primary" id="titre"><a href="#">{{q.titre}}</h5>
+                                <p>{{q.contenu}}</p>
+                                <div>
+                                    <a href="#">
+                                        {% if app.user  %}
+                                            <i class="fas fa-thumbs-up"></i>
+                                        {% else %}
+                                            <i class="far fa-thumbs-up"></i>
+                                        {% endif %}
+                                        <span class="js-likes">1</span>
+                                        <span class="js-label">j'aime</span>
+                                    </a>
+                                </div>
+                                <div>
+                                    <textarea type="text" class="form-control" aria-label="With textarea"></textarea>
+                                </div>
+                                {#<div>
+                                    {%  for r in reponses %}
+                                    <div>
+                                    <p class="text-primary" id="rep"><a href="#">{{r.contenueReponse}}</p>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                #}
+                                <div>
+                                    <a href="#" class="pull-right btn btn-theme02">Répondre</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div class="navigation">
+                            {{ knp_pagination_render(questions) }}
+                        </div>
+                    </div>
+                </aside>
+
+
+            </div>
+            <!-- page end-->
+        </section>
+        <!-- /wrapper -->
+
+
+{% endblock %}
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $("#recherche").keyup(function (){
+
+            $.ajax({
+                url : '{{ path('Recherche') }}',
+                type : 'POST',
+                dataType: "json",
+                data: {
+                    {# type: $( "#recherche" ).val(),  #}
+                    valeur: $( "#recherche" ).val()
+                },
+                success :     function(reponse) {
+                    $( "#result" ).html( reponse );
+                    //  alert($( "#selectsearch" ).val());
+                },
+
+                error : function(resultat, statut, erreur){
+
+                },
+
+                complete : function(resultat, statut){
+
+                }
+
+            });
+
+        });
+    </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{{ asset('js/like.js') }}"></script>
+
+{% endblock %}

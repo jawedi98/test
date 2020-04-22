@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+{% block body %}
+    <div id="map"></div>
+    <script>
+
+        function initMap() {
+            var myLatLng={lat:36.88008310000001, lng: 10.192749899999999 }
+            var sfaxLatLng={lat:34.7231273, lng: 10.640525 }
+            var sousseLatLng={lat:35.828829, lng: 10.640525 }
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: myLatLng,
+                zoom: 8
+            });
+            var marker = new google.maps.Marker(
+                {
+                    position: myLatLng,
+                    map: map,
+                    title: 'Tunis'
+                })
+        }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBberwaJYho8VjDPXeNbbMjx_wK7k28eAI&callback=initMap"
+            async defer></script>
+{% endblock %}
+</body>
+</html>

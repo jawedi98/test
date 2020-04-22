@@ -1,0 +1,107 @@
+{% extends 'admin.html.twig' %}
+
+
+{% block strong %} Véhicule {%  endblock %}
+
+    {% block h2 %} Information{% endblock %}
+
+    {% block path %} {{ path('veh_index') }} {% endblock %}
+{% block body %}
+
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+            <div class="block-header">
+
+
+
+                <div class="body">
+
+                    {{ form_start(form,{'attr': {'class': 'form-horizontal'}}) }}
+                    <div class="row clearfix">
+                        <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                            <label for="email_address_2">Image Véhicule</label>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-8">
+                            <div class="form-group">
+                                {{ form_widget(form.ad,{'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            {% if((form_errors(form.ad)==true)) %}
+                                <div class="alert alert-primary" role="alert">
+                                    Don't forget the Logo!
+                                </div>  {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                            <label for="email_address_2">Date Début Contrat</label>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-8">
+                            <div class="form-group">
+                                {{ form_widget(form.debutcontrat,{'attr': {'class': 'form-control','placeholder':'Ex: 2016-01-01'}}) }}
+                            </div>
+                            {% if((form_errors(form.debutcontrat)==true)) %}
+                                <div class="alert alert-primary" role="alert">
+                                    Missing Date!
+                                </div>  {% endif %}
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                            <label for="password_2">Date Fin Contrat</label>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-8">
+                            <div class="form-group">
+                                {{ form_widget(form.fincontrat,{'attr': {'class': 'form-control','placeholder':'Ex: 2016-01-01'}}) }}
+                            </div>
+                            {% if((form_errors(form.fincontrat)==true)) %}
+                                <div class="alert alert-primary" role="alert">
+                                    Missing Date!
+                                </div>  {% endif %}
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                            <label for="email_address_2">Série</label>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-8">
+                            <div class="form-group">
+                                {{ form_widget(form.serie,{'attr': {'class': 'form-control','placeholder':'Série...'}}) }}
+                            </div>
+                            {% if((form_errors(form.serie)==true)) %}
+                                <div class="alert alert-primary" role="alert">
+                                    Missing Série!
+                                </div>  {% endif %}
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                            <label for="password_2">Societé Parent</label>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-8">
+                            <div class="form-group">
+                                {{ form_widget(form.ids) }}
+                            </div>
+                            {% if((form_errors(form.ids)==true)) %}
+                                <div class="alert alert-primary" role="alert">
+                                    You can't leave this field empty!
+                                </div>  {% endif %}
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+
+                        <div class="col-sm-8 offset-sm-2">
+                            <input type="submit" class="btn btn-raised btn-primary btn-round waves-effect" value="Update">
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

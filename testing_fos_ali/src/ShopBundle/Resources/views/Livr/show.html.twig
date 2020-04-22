@@ -1,0 +1,44 @@
+{% extends 'admin.html.twig' %}
+
+{% block username %} ADMIN {% endblock %}
+{% block strong %} Livraison ID {%  endblock %}
+
+    {% block h2 %} -  {{ livr.idv }}{% endblock %}
+
+    {% block path %} {{ path('livr_index') }} {% endblock %}
+
+{% block body %}
+
+    <div class="row clearfix">
+        <div class="col-lg-8 col-md-12">
+            <div class="card">
+                <div class="tab-content">
+
+                    <div class="tab-pane body active" id="about">
+
+                        <a role="button" class="boxs-close float-lg-right" href="{{ path('livr_delete',{ 'idv': livr.idv })}}"> Annuler cette <strong>Livraison</strong> <i class="zmdi zmdi-close"></i></a>
+
+                        <hr>
+                        <small class="text-muted">Nom Client: </small>
+                        <p>{{ livr.namev }}</p>
+                        <hr>
+
+                        <small class="text-muted">Date </small>
+                        <p>{{ livr.date | date('d-m-Y')}}</p>
+                        <hr>
+                        <small class="text-muted">Cité: </small>
+                        <p>{{ livr.cite }}</p>
+                        <hr>    <hr>
+                        <small class="text-muted">Street: </small>
+                        <p>{{ livr.street }}</p>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

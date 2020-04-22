@@ -1,0 +1,25 @@
+{% extends 'base2.html.twig' %}
+{% block body %}
+
+    <h6 style="text-align: center;color: #1b6d85;font-size: 30px;text-decoration-style: dashed">Ajouter votre question</h6>
+
+
+    {{ form_start(form, {'attr': {'id': 'titre1'}}) }}
+    {# <input type="text" id="name" name="name" required minlength="4" maxlength="8" size="10" aria-label="titre"> #}
+    {{ form_widget(form) }}
+    <input id="boutonSubmit" class="btn btn-primary" type="submit" value="ajouter" />
+    {{ form_end(form) }}
+    <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        function editReview(){
+            const textarea = document.getElementById('titre2');
+            let badwords = /fuck|shit|souhail/gi;
+            let userreview1 = textarea.value;
+            let userreview2 = userreview1.replace(badwords,'####');
+            document.getElementById('titre2').value = userreview2
+        }
+        document.getElementById('boutonSubmit').addEventListener("click",editReview);
+    </script>
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends 'admin.html.twig' %}
+
+{% block username %} {% endblock %}
+{% block strong %} {%  endblock %}
+
+    {% block h2 %} {% endblock %}
+
+    {% block path %} {{ path('commandef_index') }} {% endblock %}
+
+{% block body %}
+
+
+
+    <div class="row clearfix">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="card">
+                <div class="header">
+                    <h2><strong>Vehs</strong> List  </h2>
+
+                </div>
+                <div class="body table-responsive members_profiles">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <!--th style="width:60px;">Soc Logo</th-->
+                            <th>commande ID</th>
+                            <th>somme</th>
+                            <th>date</th>
+                            <th>user</th>
+
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for commande in com %}
+                            <tr>
+
+
+                                <td>{{ commande.idcm }}</td>
+
+                                <td class="js1">{{commande.somme }}</td>
+                                <td class="js2">{{commande.date | date("d/m/Y")  }}</td>
+                                <td>{{ commande.idn.User.username }}</td>
+
+
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                    <button class="btn btn-success"> <a href="{{ path('commandep_excel') }}" class="text-white"> Download excel</a></button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <canvas id="myChart" width="100" height="50" ></canvas>
+    </div>
+
+
+    <script src="{{ asset('js/Chart.min.js')}}"></script>
+    <script src="{{ asset('js/lodash.js')}}"></script>
+    <script>
+        var sommes = document.getElementsByClassName("js1");
+        tmp = [] ;
+        tmp_dates = [];
+        for (i=0; i<sommes.length; i++){
+            tmp[i]=Number(sommes[i].textContent);
+        }
+        var dates = document.getElementsByClassName("js2");
+        for (i=0; i<dates.length; i++){
+            tmp_dates[i]=dates[i].textContent;
+        }
+
+        obj =[];
+        for (i=0; i<dates.length; i++){
+            tmp_ob = {}
+            tmp_ob["date"] = tmp_dates[i]
+            tmp_ob["somme"] = tmp[i]
+            obj.push(tmp_ob);
+        }
+
+        var groupBy = function(xs, key) {
+            return xs.reduce(function(rv, x) {
+                (rv[x[key]] = rv[x[key]] || []).push(x);
+                return rv;
+            }, {});
+        };
+
+        obj = groupBy(obj, 'date');
+        dates_lab = Object.keys(obj)
+        val_labels = Object.values(obj)
+        tmp_val = []
+        console.log(tmp_val)
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart =new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: dates_lab,
+                datasets: [{
+                    label: '# of Votes',
+                    data: tmp_val,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+{% endblock %}

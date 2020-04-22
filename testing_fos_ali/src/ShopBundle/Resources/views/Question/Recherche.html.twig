@@ -1,0 +1,34 @@
+<div class="room-desk" id="result">
+    <h4 class="pull-left">n'hésiter pas à poser vos questions !</h4>
+    <a href="{{ path('question_news') }}" class="pull-right btn btn-theme02">+ Ajouter une question</a>
+    {%  for q in questions %}
+
+        <div class="room-box">
+            <div>
+                <a href="#"><img  src="#" class="rounded"  style="width: 30px;height: 30px" align="right"></a>
+            </div>
+            <img src="avatar.png" class="rounded"  style="width: 50px;height: 50px"><p></p>
+            <br><br>
+            <h5 class="text-primary"><a href="#">{{q.titre}}</h5>
+            <p>{{q.contenu}}</p>
+            <div>
+                {% if app.user  %}
+                    <i class="fas fa-thumbs-up"></i>
+                {% else %}
+                    <i class="far fa-thumbs-up"></i>
+                {% endif %}
+                <span class="js-likes">1</span>
+                <span class="js-label">j'aime</span>
+            </div>
+            <div>
+                <textarea type="text" class="form-control" aria-label="With textarea"></textarea>
+            </div>
+            <div>
+                <a href="#" class="pull-right btn btn-theme02">Répondre</a>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="navigation">
+
+    </div>
+</div>

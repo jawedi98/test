@@ -1,0 +1,98 @@
+{% extends 'base2.html.twig' %}
+
+{% block username %} Adminstrator{% endblock %}
+
+{% block strong %}{%  endblock %}
+
+{%  block h2 %} {% endblock %}
+
+{% block path %}
+    {{ path('livr_indexAdmin') }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="breadcrumb parallax">
+
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 hidden-xs column-left" id="column-left">
+
+            </div>
+
+            <legend>Liste des reclamations</legend>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th style="width:60px;">Reclamation</th>
+                    <th>Designation</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Categorie</th>
+                    <th>Etat</th>
+                    <th>Action</th>
+
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for r in rec %}
+                    {%  if app.user == r.utilisateur %}
+
+                        <tr>
+
+
+                            <td><a href="{{ path('recfront_show', { 'id': r.id }) }}">{{ r.id }}</a></td>
+                            <td>{{ r.designation }}</td>
+                            <td>{{ r.description|raw }}</td>
+                            <td>{{ r.date | date("d/m/Y")}}</td>
+                            <td>{{ r.idc.nomR}}</td>
+
+                            {% if r.etat=='0' %}
+                                <td>
+                                    En cours
+                                </td>
+                            {% else %}
+                                <td style="color:green">Traité</td>
+                            {% endif %}
+
+
+
+                            <td>
+                                <ol>
+
+                                    {% if r.etat=='0' %}
+                                        <li>
+                                            <a href="{{ path('recfront_edit', { 'id': r.id }) }}">edit</a>
+                                        </li>
+                                    {% endif %}
+                                    <li>
+                                        <a href="{{ path('recfront_delete', { 'id': r.id }) }}">delete</a>
+                                    </li>
+
+                                </ol>
+                            </td>
+                        </tr>
+                    {% endif %}
+
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+            <div class="col-sm-9" id="content">
+                <fieldset id="address">
+                    <ul>
+                        <li><a href="{{ path('rec_front') }}">ajouter  reclamation</a></li>
+                    </ul>
+
+                </fieldset>
+
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

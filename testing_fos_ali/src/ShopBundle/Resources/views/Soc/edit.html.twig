@@ -1,0 +1,121 @@
+{% extends 'admin.html.twig' %}
+
+
+{% block strong %} Societé {%  endblock %}
+
+    {% block h2 %} Information{% endblock %}
+
+    {% block path %} {{ path('soc_index') }} {% endblock %}
+{% block body %}
+
+
+
+    <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="card">
+                        <div class="block-header">
+
+
+
+                        <div class="body">
+
+                            {{ form_start(form,{'attr': {'class': 'form-horizontal'}}) }}
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                    <label for="email_address_2">Logo de la societé</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8">
+                                    <div class="form-group">
+                                        {{ form_widget(form.logo,{'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    {% if((form_errors(form.logo)==true)) %}
+                                    <div class="alert alert-primary" role="alert">
+                                        Don't forget your Logo!
+                                    </div>  {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                    <label for="email_address_2">Nom/Titre</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8">
+                                    <div class="form-group">
+                                        {{ form_widget(form.names,{'attr': {'class': 'form-control','placeholder':'Nom de la societé'}}) }}
+                                    </div>
+                                    {% if((form_errors(form.names)==true)) %}
+                                    <div class="alert alert-primary" role="alert">
+                                        The Name is mandatory!
+                                    </div>  {% endif %}
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                    <label for="password_2">Localisation</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8">
+                                    <div class="form-group">
+                                        {{ form_widget(form.address,{'attr': {'class': 'form-control','placeholder':'Address/Ville'}}) }}
+                                    </div>
+                                    {% if((form_errors(form.address)==true)) %}
+                                    <div class="alert alert-primary" role="alert">
+                                        Missing Address!
+                                    </div>  {% endif %}
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                    <label for="email_address_2">Email Address</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8">
+                                    <div class="form-group">
+                                        {{ form_widget(form.email,{'attr': {'class': 'form-control','placeholder':'xxxxx@xxx'}}) }}
+                                    </div>
+                                    {% if((form_errors(form.email)==true)) %}
+                                    <div class="alert alert-primary" role="alert">
+                                        The ENTERED EMAIL is invalid!
+                                    </div>  {% endif %}
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                    <label for="password_2">Numéro de téléphone</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8">
+                                    <div class="form-group">
+                                        {{ form_widget(form.tel,{'attr': {'class': 'form-control','placeholder':'Phone Number...'}}) }}
+                                    </div>
+                                    {% if((form_errors(form.tel)==true)) %}
+                                    <div class="alert alert-primary" role="alert">
+                                        Enter the new Phone Number!
+                                    </div>  {% endif %}
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                    <label for="password_2">Description</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8">
+                                    <div class="form-group">
+                                        {{ form_widget(form.description,{'attr': {'class': 'form-control','placeholder':'Brief Description'}}) }}
+                                    </div>
+                                    {% if((form_errors(form.description)==true)) %}
+                                    <div class="alert alert-primary" role="alert">
+                                        You can't leave this field empty!
+                                    </div>  {% endif %}
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+
+                                <div class="col-sm-8 offset-sm-2">
+                                    <input type="submit" class="btn btn-raised btn-primary btn-round waves-effect" value="Update">
+                                </div>
+                            </div>
+                            {{ form_end(form) }}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+{% endblock %}
